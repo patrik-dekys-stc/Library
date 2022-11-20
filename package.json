@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "typescript": "^4.9.3"
+  },
+  "name": "library",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "s": "tsc && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrik-dekys/Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrik-dekys/Library/issues"
+  },
+  "homepage": "https://github.com/patrik-dekys/Library#readme"
+}
