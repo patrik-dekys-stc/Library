@@ -12,7 +12,7 @@ app.use((0, body_parser_1.json)());
 app.get('/api/library/list', (req, res) => {
     res.send(BookAddEndpoint_1.books);
 });
-app.put('/api/library/book/add', (req, res) => {
+app.post('/api/library/book/add', (req, res) => {
     (0, BookAddEndpoint_1.BookAdd)(req, res);
 });
 app.listen(PORT, () => {
