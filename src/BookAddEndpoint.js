@@ -4,7 +4,7 @@ exports.BookAdd = exports.books = void 0;
 exports.books = [];
 const BookAdd = (req, res) => {
     const body = req.body;
-    if (body) {
+    if (typeof body === 'object') {
         exports.books.push(body);
         console.log(body);
         res.sendStatus(200);
