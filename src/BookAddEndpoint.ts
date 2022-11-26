@@ -21,8 +21,8 @@ export const BookAdd = (req: any, res: any) => {
     "name" : "Hobit",
     "author" : ["J.R.R. Tolkien"],
     "genre": ["Fantasy"],
-    "year": 1998,
-    "publishers" : "Ikar",
+    "year": 1937,
+    "publishers" : "Slovart",
     "country" : "USA",
     "pages": 350
   }  

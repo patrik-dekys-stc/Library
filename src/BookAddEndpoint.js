@@ -4,24 +4,24 @@ exports.BookAdd = exports.books = void 0;
 exports.books = [];
 const BookAdd = (req, res) => {
     const body = req.body;
-    if (typeof body === 'object') {
+    if ('name' in body && 'author' in body && 'genre' in body && 'year' in body && 'publishers' in body && 'country' in body && 'pages' in body) {
         exports.books.push(body);
         console.log(body);
         res.sendStatus(200);
     }
     else {
         console.log('ZADANÝ VTUP JE NESPRÁVNEHO FORMÁTU');
-        res.sendStatus(404);
+        res.sendStatus(400);
     }
 };
 exports.BookAdd = BookAdd;
-/* example of input
+/* example of input object
 {
     "name" : "Hobit",
     "author" : ["J.R.R. Tolkien"],
     "genre": ["Fantasy"],
-    "year": 1998,
-    "publishers" : "Ikar",
+    "year": 1937,
+    "publishers" : "Slovart",
     "country" : "USA",
     "pages": 350
   }
