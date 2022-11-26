@@ -6,18 +6,17 @@ export const BookAdd = (req: any, res: any) => {
     const body = req.body
     books.push(body)
     console.log(body)
-    res.sendStaus(200)
-    
+    res.sendStatus(200)
 } 
 
 /* example of input
 {
-    'name' : 'Hobit',
-    'author' : ['J.R.R. Tolkien'],
-    'genre': ['Fantasy'],
-    'year': 1998,
-    'publishers' : 'Ikar',
-    'country' : 'USA',
-    'pages': 350,
+    "name" : "Hobit",
+    "author" : ["J.R.R. Tolkien"],
+    "genre": ["Fantasy"],
+    "year": 1998,
+    "publishers" : "Ikar",
+    "country" : "USA",
+    "pages": 350
   }  
 */

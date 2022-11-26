@@ -4,19 +4,25 @@ exports.BookAdd = exports.books = void 0;
 exports.books = [];
 const BookAdd = (req, res) => {
     const body = req.body;
-    exports.books.push(body);
-    console.log(body);
-    res.sendStaus(200);
+    if (body) {
+        exports.books.push(body);
+        console.log(body);
+        res.sendStatus(200);
+    }
+    else {
+        console.log('ZADANÝ VTUP JE NESPRÁVNEHO FORMÁTU');
+        res.sendStatus(404);
+    }
 };
 exports.BookAdd = BookAdd;
 /* example of input
 {
-    'name' : 'Hobit',
-    'author' : ['J.R.R. Tolkien'],
-    'genre': ['Fantasy'],
-    'year': 1998,
-    'publishers' : 'Ikar',
-    'country' : 'USA',
-    'pages': 350,
+    "name" : "Hobit",
+    "author" : ["J.R.R. Tolkien"],
+    "genre": ["Fantasy"],
+    "year": 1998,
+    "publishers" : "Ikar",
+    "country" : "USA",
+    "pages": 350
   }
 */
