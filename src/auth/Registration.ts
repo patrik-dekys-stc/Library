@@ -1,7 +1,8 @@
 import { RegisterType } from "../types"
 import { hashLoginDetails, hashString } from "../utils"
-import fs, { existsSync } from 'fs'
 import Path from "path"
+
+const fs = require('fs')
 
 export const Register = (req: any, res: any) => {
     const registerBody: RegisterType = req.body
@@ -20,7 +21,7 @@ export const Register = (req: any, res: any) => {
             fs.mkdirSync('users');
         }
 
-        if (fs.existsSync(('/users/' + hashedEmail + '.json'))) {
+        if (fs.existsSync(('users/' + hashedEmail + '.json'))) {
             console.log("Zadaný e-mail je už použitý")
             res.sendStatus(403)
         } else {

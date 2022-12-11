@@ -1,11 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Register = void 0;
 const utils_1 = require("../utils");
-const fs_1 = __importDefault(require("fs"));
+const fs = require('fs');
 const Register = (req, res) => {
     const registerBody = req.body;
     if ('name' in registerBody && 'surname' in registerBody && 'email' in registerBody && 'password' in registerBody) {
@@ -16,15 +13,15 @@ const Register = (req, res) => {
             email: registerBody.email,
             password: hashedPassword
         };
-        if (!fs_1.default.existsSync('users')) {
-            fs_1.default.mkdirSync('users');
+        if (!fs.existsSync('users')) {
+            fs.mkdirSync('users');
         }
-        if (fs_1.default.existsSync(('/users/' + hashedEmail + '.json'))) {
+        if (fs.existsSync(('users/' + hashedEmail + '.json'))) {
             console.log("Zadaný e-mail je už použitý");
             res.sendStatus(403);
         }
         else {
-            fs_1.default.writeFileSync('users/' + hashedEmail + '.json', JSON.stringify(hashedRegister));
+            fs.writeFileSync('users/' + hashedEmail + '.json', JSON.stringify(hashedRegister));
             res.sendStatus(201);
         }
     }
