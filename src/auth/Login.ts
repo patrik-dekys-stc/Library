@@ -19,7 +19,8 @@ export const Login = (req: any, res: any) => {
             const rawData = fs.readFileSync('users/' + hashedEmail + '.json')
             const registerType: RegisterType = JSON.parse(rawData.toString())
 
-            if(registerType.password === hashedPassword && registerType.email === loginBody.email) { //nefunguje tak ako by malo
+
+            if(registerType.password === hashedPassword) { 
                 const key = v4()
                 accessKeys.push(key)
                 res.json({key: key})

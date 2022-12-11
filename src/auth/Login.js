@@ -38,7 +38,7 @@ const Login = (req, res) => {
         if ((0, fs_1.existsSync)('users/' + hashedEmail + '.json')) {
             const rawData = fs_1.default.readFileSync('users/' + hashedEmail + '.json');
             const registerType = JSON.parse(rawData.toString());
-            if (registerType.password === hashedPassword && registerType.email === loginBody.email) { //nefunguje tak ako by malo
+            if (registerType.password === hashedPassword) {
                 const key = (0, uuid_1.v4)();
                 __1.accessKeys.push(key);
                 res.json({ key: key });
