@@ -11,11 +11,11 @@ export const hashString = (value: string): string => {
 }
 
 export const loadBooks = (): book[] => {
-    const fileNames:string[] = fs.readdirSync('books/')
+    const fileNames: string[] = fs.readdirSync('books/')
     const books: book[] = fileNames.map((bookFileName: string) => {
         const rawData = fs.readFileSync('books/' + bookFileName)
         const book: book = JSON.parse(rawData.toString())
         return book
     })
-    return[]
+    return books
 }

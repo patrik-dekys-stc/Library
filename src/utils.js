@@ -20,6 +20,6 @@ const loadBooks = () => {
         const book = JSON.parse(rawData.toString());
         return book;
     });
-    return [];
+    return books;
 };
 exports.loadBooks = loadBooks;
