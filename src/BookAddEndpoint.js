@@ -22,7 +22,7 @@ const BookAdd = (req, res) => {
         fs_1.default.mkdirSync('books');
     }
     exports.books.push(body);
-    const stringifiedBook = JSON.stringify(body);
+    const stringifiedBook = JSON.stringify(body.book);
     const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages); //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
     console.log(hashedName);
     fs_1.default.writeFileSync('books/' + hashedName + '.json', stringifiedBook); //Zápis do súboru
@@ -31,6 +31,8 @@ const BookAdd = (req, res) => {
 exports.BookAdd = BookAdd;
 /* example of input object
 {
+  "key": "................",
+  "book": {
     "name" : "Hobit",
     "author" : ["J.R.R. Tolkien"],
     "genre": ["Fantasy"],
@@ -39,4 +41,5 @@ exports.BookAdd = BookAdd;
     "country" : "USA",
     "pages": 350
   }
-*/
+}
+*/ 

@@ -31,4 +31,9 @@ export const Login = (req: any, res: any) => {
     } else {
         res.sendStatus(400)
     }
+}/*
+{
+    "email": "patrik.dekys@studentstc.sk",
+    "password": "ToBySiChcelVedietXD"
 }
+*/

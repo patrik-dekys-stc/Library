@@ -51,5 +51,10 @@ const Login = (req, res) => {
     else {
         res.sendStatus(400);
     }
-};
+}; /*
+{
+    "email": "patrik.dekys@studentstc.sk",
+    "password": "ToBySiChcelVedietXD"
+}
+*/
 exports.Login = Login;

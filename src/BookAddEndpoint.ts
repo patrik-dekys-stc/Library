@@ -23,7 +23,7 @@ export const BookAdd = (req: any, res: any) => {
 
       books.push(body)
 
-      const stringifiedBook = JSON.stringify(body)
+      const stringifiedBook = JSON.stringify(body.book)
 
       const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages) //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
       console.log(hashedName)
@@ -35,12 +35,15 @@ export const BookAdd = (req: any, res: any) => {
 
 /* example of input object
 {
-    "name" : "Hobit",
+  "key": "................",
+  "book": {
+  	"name" : "Hobit",
     "author" : ["J.R.R. Tolkien"],
     "genre": ["Fantasy"],
     "year": 1937,
     "publishers" : "Slovart",
     "country" : "USA",
     "pages": 350
-  }  
+  }
+}
 */
