@@ -6,27 +6,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookAdd = exports.books = void 0;
 const fs_1 = __importDefault(require("fs"));
 const utils_1 = require("./utils");
+const __1 = require("..");
 exports.books = [];
 const BookAdd = (req, res) => {
     const body = req.body;
-    if ('name' in body && 'author' in body && 'genre' in body && 'year' in body && 'publishers' in body && 'country' in body && 'pages' in body) {
-        exports.books.push(body);
-        console.log(body);
-        //Zápis do súboru
-        const book = body;
-        if (!fs_1.default.existsSync('books')) {
-            fs_1.default.mkdirSync('books');
-        }
-        const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages); //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
-        const stringifiedBook = JSON.stringify(body);
-        console.log(hashedName);
-        fs_1.default.writeFileSync('books/' + hashedName + '.json', stringifiedBook);
-        res.sendStatus(200);
+    const authBook = body;
+    const book = authBook.book;
+    console.log(authBook.key);
+    console.log(__1.accessKeys);
+    if (!__1.accessKeys.includes(authBook.key)) {
+        res.sendStatus(401);
+        return;
     }
-    else {
-        console.log('ZADANÝ VTUP JE NESPRÁVNEHO FORMÁTU');
-        res.sendStatus(400);
+    if (!fs_1.default.existsSync('books')) {
+        fs_1.default.mkdirSync('books');
     }
+    exports.books.push(body);
+    const stringifiedBook = JSON.stringify(body);
+    const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages); //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
+    console.log(hashedName);
+    fs_1.default.writeFileSync('books/' + hashedName + '.json', stringifiedBook); //Zápis do súboru
+    res.sendStatus(200);
 };
 exports.BookAdd = BookAdd;
 /* example of input object

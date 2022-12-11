@@ -7,3 +7,20 @@ export type book = {
     country: string,
     pages: number
 }
+
+export type AuthBook = {
+    key: string
+    book: book
+}
+
+export type RegisterType = {
+    name : string,
+    surname: string,
+    email: string,
+    password: string
+}
+
+export type LoginType = {
+    email: string,
+    password: string
+}

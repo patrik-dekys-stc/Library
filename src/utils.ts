@@ -19,3 +19,11 @@ export const loadBooks = (): book[] => {
     })
     return books
 }
+
+export const hashLoginDetails = (email: string, password: string): [string, string] => {
+    const hashedEmail = hashString(email)
+    const hashedPassword = hashString(password)
+    const saltedHashedPassword = hashString(hashedPassword + hashedEmail)
+
+    return [hashedEmail, saltedHashedPassword]
+}

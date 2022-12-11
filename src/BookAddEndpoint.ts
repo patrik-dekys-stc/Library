@@ -1,34 +1,36 @@
-import { book } from './types'
+import { AuthBook, book } from './types'
 import fs from 'fs'
 import { hashString } from './utils'
+import { accessKeys } from '..'
 
 export const books: Array<book> = []
 
 export const BookAdd = (req: any, res: any) => {
     const body = req.body
-    if ('name' in body && 'author' in body && 'genre' in body && 'year' in body && 'publishers' in body && 'country' in body && 'pages' in body){
-      books.push(body)
-      console.log(body)
+      const authBook: AuthBook = body
+      const book = authBook.book
 
-      //Zápis do súboru
-      const book: book = body
+      console.log(authBook.key)
+      console.log(accessKeys)
+      if (!accessKeys.includes(authBook.key)) {
+        res.sendStatus(401)
+        return 
+      }
 
       if (!fs.existsSync('books')) {
         fs.mkdirSync('books')
       }
 
-      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages) //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
+      books.push(body)
+
       const stringifiedBook = JSON.stringify(body)
+
+      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages) //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
       console.log(hashedName)
-      fs.writeFileSync('books/' + hashedName + '.json', stringifiedBook)
+
+      fs.writeFileSync('books/' + hashedName + '.json', stringifiedBook) //Zápis do súboru
 
       res.sendStatus(200)
-    }
-    else {
-      console.log('ZADANÝ VTUP JE NESPRÁVNEHO FORMÁTU')
-      res.sendStatus(400)
-    }
-    
 } 
 
 /* example of input object

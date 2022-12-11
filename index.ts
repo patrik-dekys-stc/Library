@@ -4,6 +4,8 @@ import { BookAdd, books } from './src/BookAddEndpoint'
 import fs from 'fs'
 import { loadBooks } from './src/utils'
 import { book } from './src/types'
+import { Register } from './src/auth/Registration'
+import { Login } from './src/auth/Login'
 
 const app = express()
 const PORT = 3000
@@ -21,7 +23,16 @@ app.post('/api/library/book/add', (req, res) => {
     BookAdd(req, res)
 })
 
+app.post('/api/auth/register', (req, res) => {
+    Register(req, res)
+})
+
+app.post('/api/auth/login', (req, res) => {
+    Login(req, res)
+})
+
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
   })
   
+export let accessKeys: string[] = []
