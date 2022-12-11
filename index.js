@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const body_parser_1 = require("body-parser");
 const express_1 = __importDefault(require("express"));
 const BookAddEndpoint_1 = require("./src/BookAddEndpoint");
+const utils_1 = require("./src/utils");
 const app = (0, express_1.default)();
 const PORT = 3000;
+const loadedBooks = (0, utils_1.loadBooks)();
+BookAddEndpoint_1.books.push(...loadedBooks);
 app.use((0, body_parser_1.json)());
 app.get('/api/library/list', (req, res) => {
     res.send(BookAddEndpoint_1.books);

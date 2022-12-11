@@ -17,7 +17,7 @@ const BookAdd = (req, res) => {
         if (!fs_1.default.existsSync('books')) {
             fs_1.default.mkdirSync('books');
         }
-        const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages);
+        const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages); //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
         const stringifiedBook = JSON.stringify(body);
         console.log(hashedName);
         fs_1.default.writeFileSync('books/' + hashedName + '.json', stringifiedBook);

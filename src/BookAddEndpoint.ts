@@ -17,7 +17,7 @@ export const BookAdd = (req: any, res: any) => {
         fs.mkdirSync('books')
       }
 
-      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages)
+      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + body.pages) //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
       const stringifiedBook = JSON.stringify(body)
       console.log(hashedName)
       fs.writeFileSync('books/' + hashedName + '.json', stringifiedBook)
