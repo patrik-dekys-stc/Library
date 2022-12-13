@@ -27,6 +27,8 @@ export const Login = (req: any, res: any) => {
             } else {
                 res.sendStatus(401)
             }
+        } else { 
+            res.sendStatus(401)
         }
 
     } else {

@@ -47,6 +47,9 @@ const Login = (req, res) => {
                 res.sendStatus(401);
             }
         }
+        else {
+            res.sendStatus(401);
+        }
     }
     else {
         res.sendStatus(400);
