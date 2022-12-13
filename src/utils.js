@@ -9,7 +9,7 @@ const enc_base64_1 = __importDefault(require("crypto-js/enc-base64"));
 const fs_1 = __importDefault(require("fs"));
 const hashString = (value) => {
     let hashedValue = enc_base64_1.default.stringify(crypto_js_1.default.SHA256(value));
-    hashedValue = hashedValue.replace('/', '').replace('/\\/', '');
+    hashedValue = hashedValue.replace(/\//g, '').replace(/\\/g, ''); //RegExp
     return hashedValue;
 };
 exports.hashString = hashString;

@@ -6,7 +6,7 @@ import fs from 'fs'
 
 export const hashString = (value: string): string => {
     let hashedValue = Base64.stringify(crypto.SHA256(value))
-    hashedValue = hashedValue.replace('/','').replace('/\\/', '')
+    hashedValue = hashedValue.replace(/\//g,'').replace(/\\/g, '') //RegExp
     return hashedValue
 }
 
