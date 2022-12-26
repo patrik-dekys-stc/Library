@@ -19,6 +19,8 @@ export const Search = (req: any, res: any) => {
         const foundBooks = searchPublisher(searchQuery.query)
 
         res.json(foundBooks)
+    } else if(searchQuery.type === 'descrition') {
+        res.sendStatus(404)
     } else {
         res.sendStatus(501)
     }

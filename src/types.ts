@@ -6,6 +6,7 @@ export type book = {
     publishers: string,
     country: string,
     pages: number
+    description: string
 }
 
 export type AuthBook = {
