@@ -19,7 +19,8 @@ const Search = (req, res) => {
         res.json(foundBooks);
     }
     else if (searchQuery.type === 'descrition') {
-        res.sendStatus(404);
+        const foundBooks = searchDiscription(searchQuery.query);
+        res.json(foundBooks);
     }
     else {
         res.sendStatus(501);
@@ -55,4 +56,25 @@ const searchPublisher = (query) => {
         }
     }
     return foundBooks;
+};
+const searchDiscription = (query) => {
+    const lowQuery = query.toLowerCase();
+    const queryArray = lowQuery.split(' ');
+    let foundBooks = [];
+    for (let book of BookAddEndpoint_1.books) {
+        let score = 0;
+        let desc = book.description.toLowerCase();
+        for (let queryElement of queryArray) {
+            if (desc.includes(queryElement)) {
+                score += 1;
+            }
+        }
+        if (score > 0) {
+            foundBooks.push([book, score]);
+        }
+    }
+    let sortedFoundBooks = foundBooks.sort((value1, value2) => {
+        return value2[1] - value1[1];
+    }).map((value) => value[0]);
+    return sortedFoundBooks;
 };

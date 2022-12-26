@@ -1,3 +1,4 @@
+import { query } from "express"
 import { books } from "../BookAddEndpoint"
 import { book, SearchType } from "../types"
 
@@ -20,7 +21,9 @@ export const Search = (req: any, res: any) => {
 
         res.json(foundBooks)
     } else if(searchQuery.type === 'descrition') {
-        res.sendStatus(404)
+        const foundBooks = searchDiscription(searchQuery.query)
+
+        res.json(foundBooks)
     } else {
         res.sendStatus(501)
     }
@@ -65,4 +68,31 @@ const searchPublisher = (query: string) => {
     return foundBooks
 }
 
+const searchDiscription = (query: string) => {
+    const lowQuery = query.toLowerCase()
 
+    const queryArray: string[] = lowQuery.split(' ')
+
+    let foundBooks: [book, number][] = []
+    for(let book of books) {
+        let score: number = 0
+        let desc = book.description.toLowerCase()
+        
+        
+        for(let queryElement of queryArray) {
+            if (desc.includes(queryElement)) {
+                score += 1
+            }
+        }
+
+        if(score >  0 ) {
+            foundBooks.push([book, score])
+        }
+    }
+    
+    let sortedFoundBooks = foundBooks.sort((value1: [book, number], value2: [book, number]) => {
+        return value2[1] - value1[1]
+    }).map((value: [book, number]) => value[0])
+
+    return sortedFoundBooks
+}
