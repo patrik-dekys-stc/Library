@@ -23,7 +23,7 @@ const BookAdd = (req, res) => {
     }
     exports.books.push(body);
     const stringifiedBook = JSON.stringify(body.book);
-    const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages); //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
+    const hashedName = (0, utils_1.hashString)(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages);
     console.log(hashedName);
     fs_1.default.writeFileSync('books/' + hashedName + '.json', stringifiedBook); //Zápis do súboru
     res.sendStatus(200);
@@ -39,7 +39,8 @@ exports.BookAdd = BookAdd;
     "year": 1937,
     "publishers" : "Slovart",
     "country" : "USA",
-    "pages": 350
+    "pages": 350,
+    "description": "none"
   }
 }
 */ 

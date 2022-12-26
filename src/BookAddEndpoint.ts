@@ -25,7 +25,7 @@ export const BookAdd = (req: any, res: any) => {
 
       const stringifiedBook = JSON.stringify(body.book)
 
-      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages) //Poznámka: čo ak book.(hodnota) je array a nie string samotný?
+      const hashedName = hashString(book.name.toLowerCase().replace(' ', '') + book.year + book.publishers.toLowerCase().replace(' ', '') + book.pages) 
       console.log(hashedName)
 
       fs.writeFileSync('books/' + hashedName + '.json', stringifiedBook) //Zápis do súboru
@@ -43,7 +43,8 @@ export const BookAdd = (req: any, res: any) => {
     "year": 1937,
     "publishers" : "Slovart",
     "country" : "USA",
-    "pages": 350
+    "pages": 350,
+    "description": "none"
   }
 }
 */
