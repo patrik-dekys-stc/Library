@@ -10,6 +10,7 @@ const BookAddEndpoint_1 = require("./src/BookAddEndpoint");
 const utils_1 = require("./src/utils");
 const Registration_1 = require("./src/auth/Registration");
 const Login_1 = require("./src/auth/Login");
+const search_1 = require("./src/search/search");
 const app = (0, express_1.default)();
 const PORT = 3000;
 const loadedBooks = (0, utils_1.loadBooks)();
@@ -26,6 +27,9 @@ app.post('/api/auth/register', (req, res) => {
 });
 app.post('/api/auth/login', (req, res) => {
     (0, Login_1.Login)(req, res);
+});
+app.get('/api/library/search', (req, res) => {
+    (0, search_1.Search)(req, res);
 });
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`);
