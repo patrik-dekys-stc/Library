@@ -14,7 +14,7 @@ const Search = (req, res) => {
         const foundBooks = searchName(searchQuery.query);
         res.json(foundBooks);
     }
-    else if (searchQuery.type === 'publisher') {
+    else if (searchQuery.type === 'publishers') {
         const foundBooks = searchPublisher(searchQuery.query);
         res.json(foundBooks);
     }
