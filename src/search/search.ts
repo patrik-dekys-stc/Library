@@ -76,9 +76,6 @@ const searchDiscription = (query: string) => {
     let foundBooks: [book, number][] = []
     for(let book of books) {
         let score: number = 0
-
-        console.log(typeof book.description)
-
         let desc = String(book.description).toLowerCase()
         
         
