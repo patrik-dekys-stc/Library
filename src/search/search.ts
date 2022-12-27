@@ -20,7 +20,7 @@ export const Search = (req: any, res: any) => {
         const foundBooks = searchPublisher(searchQuery.query)
 
         res.json(foundBooks)
-    } else if(searchQuery.type === 'descrition') {
+    } else if(searchQuery.type === 'description') {
         const foundBooks = searchDiscription(searchQuery.query)
 
         res.json(foundBooks)
