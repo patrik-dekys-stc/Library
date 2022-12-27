@@ -63,7 +63,8 @@ const searchDiscription = (query) => {
     let foundBooks = [];
     for (let book of BookAddEndpoint_1.books) {
         let score = 0;
-        let desc = book.description.toLowerCase();
+        console.log(typeof book.description);
+        let desc = String(book.description).toLowerCase();
         for (let queryElement of queryArray) {
             if (desc.includes(queryElement)) {
                 score += 1;
