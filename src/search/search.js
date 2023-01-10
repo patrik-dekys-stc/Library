@@ -76,5 +76,6 @@ const searchDiscription = (query) => {
     let sortedFoundBooks = foundBooks.sort((value1, value2) => {
         return value2[1] - value1[1];
     }).map((value) => value[0]);
+    sortedFoundBooks.length = 5;
     return sortedFoundBooks;
 };

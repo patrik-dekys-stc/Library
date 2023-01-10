@@ -93,6 +93,6 @@ const searchDiscription = (query: string) => {
     let sortedFoundBooks = foundBooks.sort((value1: [book, number], value2: [book, number]) => {
         return value2[1] - value1[1]
     }).map((value: [book, number]) => value[0])
-
+    sortedFoundBooks.length = 5
     return sortedFoundBooks
 }
